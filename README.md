@@ -1,0 +1,2 @@
+# smartXray
+smartdns + xray

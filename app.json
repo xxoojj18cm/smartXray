@@ -1,0 +1,8 @@
+{
+    "name": "smartXray",
+    "description": "Deploy smartdns and xray on Heroku.",
+    "keywords": ["xray", "smartdns"],
+    "website": "https://blog.session.pub",
+    "repository": "https://github.com/qiumzh/smartXray.git",
+    "stack": "container"
+}

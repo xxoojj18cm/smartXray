@@ -12,4 +12,4 @@ ADD run.sh /run.sh
 RUN chmod +x /run.sh
 CMD /run.sh
 RUN apk del .build-deps \
-	&& echo '0 9 * * 1 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install' >> /var/spool/cron/crontabs/root
+  && echo '0 9 * * 1 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install' >> /var/spool/cron/crontabs/root

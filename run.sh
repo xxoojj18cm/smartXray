@@ -42,9 +42,6 @@ cat << EOF > /usr/local/etc/xray/config.json
 }
 EOF
 
-# Run XRay
-/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
-
 # run smartdns
 if [ ! -f /smartdns/smartdns.conf ]; then
     mkdir -p /smartdns
@@ -55,3 +52,8 @@ fi
 # 系统使用smartdns解析
 echo "127.0.0.1" > /etc/resolv.conf
 echo "1.1.1.1" >> /etc/resolv.conf
+
+# Run XRay
+/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
+
+

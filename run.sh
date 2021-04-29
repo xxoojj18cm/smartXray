@@ -45,10 +45,7 @@ cat << EOF > /usr/local/etc/xray/config.json
     ],
     "dns": {
         "servers": [
-            {
-                "address": "127.0.0.1",
-                "port": "5353"
-            }
+            "1.1.1.1"
         ]
     },
     "routing": {

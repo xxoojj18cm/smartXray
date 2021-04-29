@@ -36,9 +36,31 @@ cat << EOF > /usr/local/etc/xray/config.json
     ],
     "outbounds": [
         {
-            "protocol": "freedom"
+            "protocol": "freedom",
+            "settings": {
+                "domainStrategy": "UseIP"
+            },
+            "tag": "ip-out"
         }
-    ]
+    ],
+    "dns": {
+        "servers": [
+            {
+                "address": "127.0.0.1",
+                "port": "5353"
+            }
+        ]
+    },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "outboundTag": "ip-out",
+                "network": "tcp,udp"
+            }
+        ]
+    }
 }
 EOF
 
@@ -48,10 +70,6 @@ if [ ! -f /smartdns/smartdns.conf ]; then
     cp -u /smartdns.conf /smartdns/smartdns.conf
 fi
 /bin/smartdns -f -x -c /smartdns/smartdns.conf
-
-# 系统使用smartdns解析
-echo "127.0.0.1" > /etc/resolv.conf
-echo "1.1.1.1" >> /etc/resolv.conf
 
 # Run XRay
 /usr/local/bin/xray run -config /usr/local/etc/xray/config.json

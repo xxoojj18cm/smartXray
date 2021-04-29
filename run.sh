@@ -55,7 +55,3 @@ fi
 # 系统使用smartdns解析
 echo "127.0.0.1" > /etc/resolv.conf
 echo "1.1.1.1" >> /etc/resolv.conf
-
-# 定时更新xray
-echo '0 9 * * 1 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install' >> /var/spool/cron/crontabs/root
-

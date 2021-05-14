@@ -7,7 +7,7 @@ unzip /tmp/xray/xray.zip -d /tmp/xray
 install -m 755 /tmp/xray/xray /usr/local/bin/xray
 
 # 自动加载配置
-curl -L -H "Cache-Control: no-cache" -o /etc/config.json https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
+curl -L -H "Cache-Control: no-cache" -o /etc/config.json https://raw.githubusercontent.com/qiumzh/smartXray/okteto/config.json
 # Remove temporary directory
 rm -rf /tmp/xray
 

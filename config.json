@@ -1,0 +1,51 @@
+{
+    "inbounds": [
+        {
+            "port": 8080,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "f86886e7-a5cb-4ad3-8891-d140c1ec3902",
+                        "level": 0
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "wsSettings": {
+                    "path": "/xray"
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {
+                "domainStrategy": "UseIPv4"
+            },
+            "tag": "ip-out"
+        }
+    ],
+    "dns": {
+        "servers": [
+            "https+local://1.1.1.1/dns-query",
+            "8.8.8.8",
+            "9.9.9.9",
+            "208.67.222.222"
+        ],
+        "queryStrategy": "UseIPv4"
+    },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "outboundTag": "ip-out",
+                "network": "tcp,udp"
+            }
+        ]
+    }
+}

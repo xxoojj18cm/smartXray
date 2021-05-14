@@ -1,0 +1,3 @@
+deploy:
+  - okteto build -t okteto.dev/smart-xray:latest
+  - kubectl apply -f k8s

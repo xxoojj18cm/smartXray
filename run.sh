@@ -38,15 +38,19 @@ cat << EOF > /usr/local/etc/xray/config.json
         {
             "protocol": "freedom",
             "settings": {
-                "domainStrategy": "UseIP"
+                "domainStrategy": "UseIPv4"
             },
             "tag": "ip-out"
         }
     ],
     "dns": {
         "servers": [
-            "1.1.1.1"
-        ]
+            "https+local://1.1.1.1/dns-query",
+            "8.8.8.8",
+            "9.9.9.9",
+            "208.67.222.222"
+        ],
+        "queryStrategy": "UseIPv4"
     },
     "routing": {
         "domainStrategy": "IPIfNonMatch",
@@ -61,14 +65,5 @@ cat << EOF > /usr/local/etc/xray/config.json
 }
 EOF
 
-# run smartdns
-if [ ! -f /smartdns/smartdns.conf ]; then
-    mkdir -p /smartdns
-    cp -u /smartdns.conf /smartdns/smartdns.conf
-fi
-/bin/smartdns -f -x -c /smartdns/smartdns.conf
-
 # Run XRay
 /usr/local/bin/xray run -config /usr/local/etc/xray/config.json
-
-
